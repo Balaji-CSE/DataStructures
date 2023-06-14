@@ -1,0 +1,74 @@
+package learning;
+
+import java.util.Arrays;
+
+public class MergeSort {
+
+	static int a[] = {7,3,5,4,2,6};
+	public static void mergesort(int a[],int lb,int ub)
+	{
+		int mid;
+		if(lb<ub)
+		{
+			mid = (lb+ub)/2;
+			mergesort(a,lb,mid);
+			mergesort(a,mid+1,ub);
+			merge(a,lb,mid,ub);
+		}
+	
+	}
+	
+	
+	public static void merge(int a[],int lb,int mid,int ub)
+	{
+		int b[] = new int[a.length];
+		int i = lb;
+		int j = mid+1;
+		int k = lb;
+		
+		while(i<=mid && j<=ub)
+		{
+			if(a[i]<=a[j])
+			{
+				b[k] = a[i];
+				i++;
+			}
+			else
+			{
+				b[k] = a[j];
+				j++;
+			}
+			k++;
+		}
+		
+		
+		while(j<=ub)
+		{
+			b[k] = a[j];
+			j++;
+			k++;
+		}
+		
+		
+		while(i<=mid)
+		{
+				b[k] = a[i];
+				i++;
+				k++;
+		}
+		
+		
+		for(int p=lb;p<k;p++)
+		{
+			a[p] = b[p];
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(Arrays.toString(a));
+		mergesort(a,0,a.length-1);
+		System.out.println(Arrays.toString(a));
+	}
+
+}
