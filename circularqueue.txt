@@ -1,0 +1,69 @@
+package learning;
+public class CircularQueue 
+{
+	int queue[] = new int[5];
+	int r=-1;
+	int f=-1;
+	
+	public void enqueue(int data)
+	{
+		if(f==(r+1)%5)
+		{
+			System.out.println("QUEUE IS FULL");
+		}
+		else if(r==-1 && f==-1)
+		{
+			r=0;
+			f=0;
+			queue[r] = data;
+			System.out.println("Element Inserted...");
+		}
+		else 
+		{
+			r = (r+1)%5;
+			queue[r] = data;
+			System.out.println("Element Inserted...");
+		}
+		
+	}
+	
+	public void dequeue()
+	{
+		if(r==-1 && f==-1) //no element
+		{
+			System.out.println("Queue Empty.");
+		}
+		else if(r==f) //one element
+		{
+			System.out.println("Popped Element :( = " + queue[f]);
+			r = -1;
+			f = -1;
+		}
+		else //more than 1 element
+		{
+			System.out.println("Popped Element = " + queue[f]);
+			f=(f+1)%5;
+		}
+		
+	}
+	
+	public void display()
+	{
+		if(r==-1 && f==-1) //no element
+		{
+			System.out.println("Queue Empty");
+		}
+		
+		else
+		{
+			int i = f;
+			while(i!=r)
+			{
+				System.out.print(queue[i]+" ");
+				i=(i+1)%5;
+			}
+			System.out.println(queue[r]);
+		}
+	}
+
+}
