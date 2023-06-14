@@ -1,0 +1,64 @@
+package learning;
+public class MyQueue 
+{
+	int queue[] = new int[5];
+	int r=-1;
+	int f=-1;
+	public void enqueue(int data)
+	{
+		if(r==queue.length-1)
+		{
+			System.out.println("QUEUE IS FULL");
+		}
+		else if(r==-1 && f==-1)
+		{
+			r=0;
+			f=0;
+			queue[r] = data;
+			System.out.println("Element Inserted...");
+		}
+		else 
+		{
+			r++;
+			queue[r] = data;
+			System.out.println("Element Inserted...");
+		}
+		
+	}
+	
+	public void dequeue()
+	{
+		if(r==-1 && f==-1) //no element
+		{
+			System.out.println("Queue Empty.");
+		}
+		else if(r==f) //one element
+		{
+			System.out.println("Popped Element :( = " + queue[f]);
+			r = -1;
+			f = -1;
+		}
+		else //more than 1 element
+		{
+			System.out.println("Popped Element = " + queue[f]);
+			f++;
+		}
+		
+	}
+	
+	public void display()
+	{
+		if(r==-1 && f==-1) //no element
+		{
+			System.out.println("Queue Empty");
+		}
+		else
+		{
+			for(int i=f;i<=r;i++)
+			{
+				System.out.print(queue[i]+" ");
+			}
+		}
+	}
+
+}
