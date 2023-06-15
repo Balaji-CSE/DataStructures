@@ -1,0 +1,76 @@
+package learning;
+class SNode
+{
+	int data;
+	SNode next;
+	
+	SNode(int data)
+	{
+		this.data = data;
+	}
+}
+
+class StackList
+{
+	SNode top;
+	public void push(int data)
+	{
+		SNode n = new SNode(data);
+		if(top==null) //no elements there
+		{
+			top = n;
+		}
+		else
+		{
+			n.next = top;
+			top = n;
+		}
+	}
+	
+	public void display()
+	{
+		if(top==null)
+			System.out.println("Stack is Empty");
+		else
+		{
+			SNode temp = top;
+			while(temp!=null)
+			{
+				System.out.print(temp.data+" ");
+				temp = temp.next;
+			}
+		}
+	}
+	
+	public void pop()
+	{
+		if(top==null)
+		{
+			System.out.println("Stack is Empty");
+		}
+		else
+		{
+			SNode temp = top;
+			System.out.println("Popped Element = "+top.data);
+			top = top.next;
+			temp.next=null;
+		}
+	}
+}
+public class StackLinkedList {
+
+	public static void main(String[] args) {
+		//Stack 10,20,30
+		
+		StackList l = new StackList();
+		l.push(10);
+		l.push(20);
+		l.push(30);
+		l.pop(); //sattapadi 30 pop aaganum
+		l.display();
+		
+		l.pop();
+
+	}
+
+}
