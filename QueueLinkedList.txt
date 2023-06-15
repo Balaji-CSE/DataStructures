@@ -1,0 +1,93 @@
+package learning;
+
+class QNode
+{
+	int data;
+	QNode next;
+	
+	QNode(int data)
+	{
+		this.data = data;
+	}
+}
+
+class QueueList
+{
+	QNode head;
+	public void enqueue(int data)
+	{
+		QNode n = new QNode(data);
+		if(head==null)
+		{
+			head = n;
+		}
+		else
+		{
+			QNode temp = head;
+			while(temp.next!=null)
+			{
+				temp = temp.next;
+			}
+			temp.next = n;
+		}
+	}
+	
+	public void dequeue()
+	{
+		if(head==null)
+		{
+			System.out.println("Queue is Empty");
+		}
+		else
+		{
+			QNode temp = head;
+			System.out.println("Popped element = "+head.data);
+			head = head.next;
+			temp.next = null;
+		}
+	}
+	
+	public void display()
+	{
+		if(head==null)
+		{
+			System.out.println("Queue is Empty");
+		}
+		else 
+		{
+			QNode temp = head;
+			while(temp!=null)
+			{
+				System.out.print(temp.data+" ");
+				temp = temp.next;
+			}
+		}
+	}
+	
+	public void peek()
+	{
+		if(head==null)
+		{
+			System.out.println("\nQueue is Empty");
+		}
+		else
+		{
+			System.out.println("\nPeek Element = " + head.data);
+		}
+	}
+}
+public class QueueLinkedList {
+
+	public static void main(String[] args) {
+		QueueList q = new QueueList();
+		q.enqueue(10);
+		q.enqueue(20);
+		q.enqueue(30);
+		q.dequeue();
+		q.display();
+		q.peek();
+		
+
+	}
+
+}
