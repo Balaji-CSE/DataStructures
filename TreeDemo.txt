@@ -1,0 +1,63 @@
+package learning;
+class BinaryTree
+{
+	Node root;
+	
+	class Node
+	{
+		int data;
+		Node left;
+		Node right;
+		Node root;
+		
+		
+		Node(int data)
+		{
+			this.data = data;
+		}
+	}
+	
+	public BinaryTree(int data) {
+		root = new Node(data);
+	}
+
+	public void insertLeft(Node root,int data)
+	{
+		root.left = new Node(data);
+	}
+	
+	public void insertRight(Node root,int data)
+	{
+		root.right = new Node(data);
+	}
+	
+	public void PreOrder(Node root)
+	{
+		if(root==null)
+		{
+			return ;
+		}
+		else
+		{
+			System.out.print(root.data+" ");
+			PreOrder(root.left);
+			PreOrder(root.right);
+		}
+	}
+}
+
+public class TreeDemo {
+
+	public static void main(String[] args) {
+		BinaryTree bt = new BinaryTree(1);
+		bt.insertLeft(bt.root,2);
+		bt.insertRight(bt.root, 3);
+		bt.insertLeft(bt.root.left, 4);
+		bt.insertRight(bt.root.left, 5);
+		bt.insertLeft(bt.root.right, 6);
+		bt.insertRight(bt.root.right, 7);
+		bt.PreOrder(bt.root);
+
+	}
+
+}
