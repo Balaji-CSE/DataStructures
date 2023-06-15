@@ -1,0 +1,146 @@
+package learning;
+
+class BST
+{
+	Node root;
+	class Node
+	{
+		int data;
+		Node left;
+		Node right;
+		
+		Node(int data)
+		{
+			this.data = data;
+		}
+	}
+	
+	
+	public BST(int data)
+	{
+		root = new Node(data);
+	}
+	
+	public BST()
+	{
+		
+	}
+	
+	public Node insertNode(Node root,int data)
+	{
+		if(root==null)
+			return new Node(data);
+		
+		if(data<root.data)
+		{
+			root.left = insertNode(root.left, data);
+		}
+		else
+		{
+			root.right = insertNode(root.right, data);
+		}
+		
+		return root;
+	}
+	
+	public void insert(int data)
+	{
+		insertNode(root, data);
+	}
+	
+	public void inOrder(Node root)
+	{
+		//inorder traversal
+		if(root==null)
+			return ;
+		else
+		{
+			inOrder(root.left);
+			System.out.print(root.data+" ");
+			inOrder(root.right);
+		}
+	}
+	
+	
+	public void searchNode(Node root,int data)
+	{
+		if(root==null)
+		{
+			System.out.println("Element Not found");
+			return;
+		}
+		if(root.data==data)
+		{
+			System.out.println("Element found");
+			return;
+		}
+		
+		if(data<root.data)
+			searchNode(root.left, data);
+		else
+			searchNode(root.right, data);
+		
+	}
+	
+	
+	public int findMinimum(Node root)
+	{
+		if(root==null)
+			System.out.println("No tree exists");
+		else if(root.left==null)
+		{
+			return root.data;
+		}
+		return findMinimum(root.left);
+	
+	}
+	
+	public Node deleteNode(Node root,int value)
+	{
+		if(root==null)
+			return root;
+		if(value<root.data)
+			root.left = deleteNode(root.left, value);
+		else if(value>root.data)
+			root.right = deleteNode(root.right, value);
+		else {
+			if(root.right==null)
+				return root.left;
+			else if(root.left==null)
+				return root.right;
+			
+			root.data = findMinimum(root.right);
+			deleteNode(root.right, root.data);
+		}
+		
+		
+		return root;
+	}
+}
+public class BinarySearchTree {
+
+	public static void main(String[] args) {
+		BST bst = new BST(25);
+		bst.insert(20);
+		bst.insert(36);
+		bst.insert(10);
+		bst.insert(12);
+		bst.insert(30);
+		bst.insert(40);
+		bst.insert(5);
+		bst.insert(12);
+		bst.insert(28);
+		bst.insert(38);
+		bst.insert(48);
+		
+		bst.inOrder(bst.root);
+		System.out.println();
+		bst.deleteNode(bst.root,30);
+		bst.inOrder(bst.root);
+		
+		
+	}
+
+	
+
+}
